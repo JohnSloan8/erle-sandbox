@@ -1,0 +1,25 @@
+{% load static %}
+
+<script>var inDevelopment = {{ in_development }}</script>
+
+<!-- LIBRARIES -->
+<script src="{% static 'base/javascript/libraries/jquery-3.5.1.min.js' %}"></script>
+<script src="{% static 'base/javascript/libraries/three.min.js' %}"></script>
+
+<!-- UTILS -->
+<script src="{% static 'base/javascript/ajaxPost.js' %}"></script>
+<script src="{% static 'base/javascript/utils.js' %}"></script>
+
+<!-- LOAD -->
+<script src="{% static 'pronunciation/javascript/load/main.js' %}"></script>
+<script src="{% static 'pronunciation/javascript/load/audio.js' %}"></script>
+
+<!-- TRANSCRIPTS -->
+<script src="{% static 'pronunciation/javascript/transcripts/display.js' %}"></script>
+
+<!-- BUTTONS -->
+<script src="{% static 'pronunciation/javascript/buttons/main.js' %}"></script>
+<script src="{% static 'pronunciation/javascript/buttons/recording.js' %}"></script>
+<script src="{% static 'pronunciation/javascript/buttons/words.js' %}"></script>
+<script src="{% static 'pronunciation/javascript/buttons/keyboard.js' %}"></script>
+<script src="{% static 'pronunciation/javascript/buttons/synthesis_response.js' %}"></script>

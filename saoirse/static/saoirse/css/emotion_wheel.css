@@ -1,0 +1,58 @@
+#emotionWheelCont {
+    position: relative;
+    width: 65%;
+}
+
+#emotionWheel {
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.7);
+    height: 0;
+    width: 100%;
+    padding-top: 100%;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+#emotionWheel:hover {
+    background-color: rgba(255, 255, 255, 1);
+}
+
+#emotionClickedLocation {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: #188ac7;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.emotion-labels {
+    position: absolute;
+    height: 40px;
+    width: 40px;
+}
+
+#happyLabel {
+    right: -16%;
+    top: 2%;
+}
+
+#contentLabel {
+    right: -16%;
+    top: 76%;
+}
+
+#sadLabel {
+    right: 58%;
+    top: 100%;
+}
+
+#fearLabel {
+    right: 101%;
+    top: 40%;
+}
+
+#disgustLabel {
+    right: 58%;
+    top: -22%;
+}

@@ -1,0 +1,76 @@
+.frosted-interaction-board {
+    background-color: rgba(209, 209, 209, 0.5);
+}
+
+#topButtonsContainer {
+    display: none;
+    position: absolute;
+    top: -120px;
+    height: 120px;
+    width: 100%;
+    /*box-shadow: 1px 1px 1px 1px red inset;*/
+}
+
+#transcriptionContainer {
+    display: none;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    bottom: 150px;
+    font-size: 54px;
+    /*box-shadow: 1px 1px 1px 1px blue inset;*/
+}
+
+#transcriptionInnerContainer {
+    position: absolute;
+    /*height: calc(100% - 20px);*/
+    width: calc(100% - 20px);
+    /*box-shadow: 1px 1px 1px 1px blue inset;*/
+}
+
+.transcription-word-space-container {
+    position: relative;
+    display: inline-block;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 1px;
+    padding-right: 1px;
+    width: auto;
+}
+
+.transcription-word-space-inner-container {
+    position: relative;
+    background-color: white;
+    padding: 8px;
+    padding-left: 16px;
+    padding-right: 16px;
+    /*box-shadow: 2px 2px 8px 1px grey;*/
+}
+
+#bottomButtonsContainer {
+    display: none;
+    position: absolute;
+    bottom: 0;
+    height: 150px;
+    width: 100%;
+    /*box-shadow: 1px 1px 1px 1px red inset;*/
+}
+
+.erle-top-button-container {
+    height: 100%;
+    display: none;
+}
+
+.erle-bottom-button-container {
+    height: 100%;
+    display: none;
+}
+
+.erle-button {
+    position: absolute;
+    background-color: white;
+    height: calc(100% - 20px);
+    width: calc(100% - 20px);
+    /*box-shadow: 2px 2px 8px 1px grey;*/
+}
+

@@ -1,0 +1,56 @@
+{% load static %}
+
+<!-- JSON objects-->
+<script>var face = "{% static 'saoirse/JSON/saoirse_face.json' %}"</script>
+<script>var mouth = "{% static 'saoirse/JSON/saoirse_mouth.json' %}"</script>
+<script>var eye = "{% static 'saoirse/JSON/saoirse_eye.json' %}"</script>
+<script>var hair = "{% static 'saoirse/JSON/saoirse_hair.json' %}"</script>
+<script>var body = "{% static 'saoirse/JSON/saoirse_body.json' %}"</script>
+
+<script>var happyEmojiURL = "{% static 'base/images/happy_emoji.png' %}"</script>
+<script>var sadEmojiURL = "{% static 'base/images/sad_emoji.png' %}"</script>
+<script>var fearEmojiURL = "{% static 'base/images/fear_emoji.png' %}"</script>
+<script>var contentEmojiURL = "{% static 'base/images/content_emoji.png' %}"</script>
+<script>var disgustEmojiURL = "{% static 'base/images/disgust_emoji.png' %}"</script>
+<script>var threeSaoirsesURL = "{% static 'base/images/three_saoirses.png' %}"</script>
+
+<script>var inDevelopment = {{ in_development }}</script>
+<script>var voices = {{ voices | safe }}</script>
+
+<!-- LIBRARIES -->
+<script src="{% static 'base/javascript/libraries/jquery-3.5.1.min.js' %}"></script>
+<script src="{% static 'base/javascript/libraries/three.min.js' %}"></script>
+
+<!-- UTILS -->
+<script src="{% static 'base/javascript/ajaxPost.js' %}"></script>
+<script src="{% static 'base/javascript/utils.js' %}"></script>
+
+<!-- LOAD SCENE -->
+<script src="{% static 'saoirse/javascript/load/sine_arrays.js' %}"></script>
+<script src="{% static 'saoirse/javascript/load/objects.js' %}"></script>
+<script src="{% static 'saoirse/javascript/load/control_panel.js' %}"></script>
+<script src="{% static 'saoirse/javascript/load/main.js' %}"></script>
+<script src="{% static 'saoirse/javascript/load/three_js_objects.js' %}"></script>
+<script src="{% static 'saoirse/javascript/load/animate.js' %}"></script>
+
+<!-- MOVE -->
+<script src="{% static 'saoirse/javascript/move/reset.js' %}"></script>
+<script src="{% static 'saoirse/javascript/move/random/blink.js' %}"></script>
+<script src="{% static 'saoirse/javascript/move/random/randomTilt.js' %}"></script>
+<script src="{% static 'saoirse/javascript/move/random/randomHeadTilt.js' %}"></script>
+<script src="{% static 'saoirse/javascript/move/eyes/main.js' %}"></script>
+<script src="{% static 'saoirse/javascript/move/individual.js' %}"></script>
+<script src="{% static 'saoirse/javascript/move/body/get_movements.js' %}"></script>
+<script src="{% static 'saoirse/javascript/move/body/create.js' %}"></script>
+<script src="{% static 'saoirse/javascript/move/body/move.js' %}"></script>
+<script src="{% static 'saoirse/javascript/move/body/poses.js' %}"></script>
+<script src="{% static 'saoirse/javascript/move/expression/slider_events.js' %}"></script>
+<script src="{% static 'saoirse/javascript/move/expression/poses.js' %}"></script>
+<script src="{% static 'saoirse/javascript/move/expression/get_expressions.js' %}"></script>
+<script src="{% static 'saoirse/javascript/move/expression/create.js' %}"></script>
+<script src="{% static 'saoirse/javascript/move/expression/move.js' %}"></script>
+<script src="{% static 'saoirse/javascript/move/expression/emotion_wheel.js' %}"></script>
+
+<!-- SPEAK -->
+<script src="{% static 'saoirse/javascript/speak/main.js' %}"></script>
+<script src="{% static 'saoirse/javascript/speak/speaking.js' %}"></script>

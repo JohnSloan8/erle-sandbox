@@ -1,0 +1,64 @@
+#keyboardTextBoxContainer {
+    font-size: 5vw;
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 50%;
+    bottom: 0;
+}
+
+#textBoxContainer {
+  width: 100%;
+  height: 25%;
+  /*border: 2px solid green;*/
+}
+
+#keyboardContainer {
+  width: 100%;
+  height: 75%;
+}
+
+.letter-container {
+  position: relative;
+  display: inline-block;
+  width: 8.4%;
+  height: 100%;
+  font-family: sans-serif;
+}
+
+.letter-inner-container {
+  position: relative;
+  width: calc(100% - 10px);
+  height: calc(100% - 20px);
+  margin: 5px;
+  /*margin-top: 20px;*/
+  /*margin-bottom: 20px;*/
+  background-color: white;
+}
+
+.letter-inner-container:active {
+  background-color: blue;
+  color: white;
+}
+
+#letterDELETE {
+  width: 16%;
+}
+
+#letterSPACE {
+  width: 32%;
+}
+
+#letterENTER {
+  width: 16%;
+  position: absolute;
+  right: 5px;
+  bottom: 0px;
+}
+
+#letterCANCEL {
+  width: 16%;
+  position: absolute;
+  left: 5px;
+  bottom: 0px;
+}

@@ -1,0 +1,6 @@
+*.pyc
+__pycache__
+private.py
+*.sw[op]
+erle_sandbox/
+media/

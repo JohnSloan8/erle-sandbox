@@ -1,0 +1,1 @@
+python txt2wav.py -v cerevoice_Heather_16k_standard.voice -i test.txt -l heather_license.lic -r heather_root.crt -c heather_certificate.pem -k heather.key

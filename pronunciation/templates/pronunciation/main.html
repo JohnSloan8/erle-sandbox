@@ -1,0 +1,251 @@
+{% extends 'base/main.html' %}
+{% block content %}
+{% load static %}
+
+
+<!-- STYLESHEETS -->
+{% include 'pronunciation/stylesheets.html' %}
+
+<div class="erle-container main-container" id="mainContainer">
+
+    <div class="erle-inner-container main-inner-container" id="mainInnerContainer">
+
+        <div class="erle-col-half"></div><!--
+
+     --><div class="erle-col-half" id="bottomHalf">
+        
+            <div class="frosted-interaction-board" id="topButtonsContainer">
+        
+                <div class="erle-inner-container">
+                
+                    <div class="erle-row-third">
+                        
+                        <div class="erle-top-button-container" id="earBlueButtonContainer">
+
+                            <div class="erle-inner-container erle-center">
+                        
+                                <div class="erle-button erle-center">
+
+                                    <div class="erle-inner-container erle-center">
+                                    
+                                        <img src="{% static 'base/images/buttons/ear_blue.png' %}">
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        
+                        </div>
+                    
+                        <div class="erle-top-button-container" id="speakButtonContainer">
+
+                            <div class="erle-inner-container erle-center">
+                        
+                                <div class="erle-button erle-center">
+
+                                    <div class="erle-inner-container erle-center">
+                                    
+                                        <img src="{% static 'base/images/buttons/speak.png' %}">
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        
+                        </div>
+                    
+                    </div><!--
+                
+                 --><div class="erle-row-third">
+                    
+                        <div class="erle-top-button-container" id="keyboardButtonContainer">
+                        
+                            <div class="erle-inner-container erle-center">
+
+                                <div class="erle-button erle-center">
+
+                                    <div class="erle-inner-container erle-center">
+                                    
+                                        <img src="{% static 'base/images/buttons/keyboard.png' %}">
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        
+                        </div>
+
+                    </div><!--
+
+                 --><div class="erle-row-third">
+                    
+                        <div class="erle-top-button-container" id="xCloseButtonContainer">
+
+                            <div class="erle-inner-container erle-center">
+                        
+                                <div class="erle-button erle-center">
+
+                                    <div class="erle-inner-container erle-center">
+                                    
+                                        <img src="{% static 'base/images/buttons/x_close.png' %}">
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        
+                        </div>
+
+                    </div>
+                
+                </div>
+        
+            </div>
+
+            <div id="transcriptionContainer" class="frosted-interaction-board">
+                
+                <div class="erle-container erle-center">
+                
+                    <div id="transcriptionInnerContainer"></div>
+                
+                </div>
+
+            </div>
+
+            <div class="frosted-interaction-board" id="bottomButtonsContainer">
+
+                <div class="erle-inner-container" id="bottomButtonsInnerContainer">
+                
+                    <div class="erle-row-third">
+
+                        <div class="erle-bottom-button-container" id="earButtonContainer">
+
+                            <div class="erle-inner-container erle-center">
+                        
+                                <div class="erle-button erle-center">
+
+                                    <div class="erle-inner-container erle-center">
+                                    
+                                        <img src="{% static 'base/images/buttons/ear.png' %}">
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        
+                        </div>
+
+
+                        <div class="erle-bottom-button-container" id="doubleArrowLeftButtonContainer">
+                    
+                            <div class="erle-inner-container erle-center">
+                            
+                                <div class="erle-button erle-center">
+                                    
+                                    <div class="erle-inner-container erle-center">
+                                    
+                                        <img src="{% static 'base/images/buttons/double_arrow_left.png' %}">
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                    
+                        </div>
+
+                    </div><!--
+                
+                 --><div class="erle-row-third">
+                    
+                        <div class="erle-bottom-button-container" id="microphoneButtonContainer">
+
+                            <div class="erle-inner-container erle-center">
+                        
+                                <div class="erle-button erle-center">
+                                    
+                                    <div class="erle-inner-container erle-center">
+                                    
+                                        <img src="{% static 'base/images/buttons/microphone.png' %}">
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                    
+                        </div>
+
+                        <div class="erle-bottom-button-container" id="stopButtonContainer">
+
+                            <div class="erle-inner-container erle-center">
+                        
+                                <div class="erle-button erle-center">
+                                    
+                                    <div class="erle-inner-container erle-center">
+                                    
+                                        <img src="{% static 'base/images/buttons/stop.png' %}">
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                    
+                        </div>
+
+                    </div><!--
+
+                 --><div class="erle-row-third">
+                    
+                        <div class="erle-bottom-button-container" id="playButtonContainer">
+                        
+                            <div class="erle-inner-container erle-center">
+
+                                <div class="erle-button erle-center">
+                                    
+                                    <div class="erle-inner-container erle-center">
+                                    
+                                        <img src="{% static 'base/images/buttons/play.png' %}">
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    
+                    </div>
+                
+                </div>
+        
+            </div>
+
+        </div>
+
+        <div class="frosted-interaction-board" id="keyboardTextBoxContainer">
+
+			<div class="erle-center" id="textBoxContainer"></div>
+			  
+			<div id="keyboardContainer"></div>
+			
+        </div>
+
+    </div>
+        
+</div>
+
+<audio preload="auto" id="speechAudio"></audio>
+<audio preload="auto" id="fullSpeechAudio"></audio>
+
+<!-- SCRIPTS -->
+{% include 'pronunciation/scripts.html' %}
+
+
+{% endblock %}

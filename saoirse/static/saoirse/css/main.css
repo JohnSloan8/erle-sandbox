@@ -1,0 +1,124 @@
+.three-js-container {
+    position: absolute;
+    width: 100%;
+}
+
+.controls-container {
+    position: relative;
+    height: 100%;
+    overflow-y: scroll;
+}
+
+.controls-inner-container {
+    position: relative;
+}
+
+.single-control-container {
+    background-color: #add8e6;
+    position: relative;
+    width: 100%;
+    margin-bottom: 1px;
+    font-size: 14px;
+}
+
+.erle-textarea {
+    width: 96%;
+}
+
+.details-container {
+    position: absolute;
+    margin: 8px;
+}
+
+#erleDetailsContainer {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 250px;
+    height: 380px;
+    border: 3px solid #add8e6;
+    border-radius: 10px;
+    margin: 8px;
+}
+
+#logosContainer {
+    position: absolute;
+    height: 50px;
+    width: 100%;
+    top: 0;
+    /*border: 2px solid black*/
+}
+
+#UCDLogoContainer {
+    position: absolute;
+    right: 276px;
+    bottom: 10px;
+}
+
+#UCDLogo {
+    width: 50px;
+}
+
+#ERLELogoContainer {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 5px;
+}
+
+#ERLELogo {
+    width: 120px;
+}
+
+#ADAPTLogoContainer {
+    position: absolute;
+    right: 174px;
+    bottom: 15px;
+}
+
+#ADAPTLogo {
+    width: 80px;
+}
+
+#threeSaoirsesContainer {
+    position: absolute;
+    top: 80px;
+    /*border: 2px solid black;*/
+}
+
+#threeSaoirses {
+    width: 220px;
+}
+
+#ERLELinkContainer {
+    position: absolute;
+    bottom: 24px;
+    height: 70px;
+    font-size: 18px;
+    /*width; 70%;*/
+    /*border: 2px solid black;*/
+}
+
+.erle-link-text {
+    text-align: center;
+}
+
+#erleLink {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+#affiliatedDetailsContainer {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 94px;
+    width: 340px;
+    background-color: #e0e0e0;
+}
+
+#cereprocDetailsInnerContainer {
+    position: absolute;
+    bottom: 34;
+    right: 15;
+}

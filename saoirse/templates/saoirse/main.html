@@ -1,0 +1,92 @@
+{% extends 'base/main.html' %}
+{% block content %}
+{% load static %}
+
+
+<!-- STYLESHEETS -->
+{% include 'saoirse/stylesheets.html' %}
+
+<div class="erle-container main-container" id="mainContainer">
+
+    <div class="erle-inner-container main-inner-container" id="mainInnerContainer">
+
+        <div class="erle-container three-js-container" id="saoirseContainer">
+
+            <div class="erle-inner-container" id="saoirseInnerContainer">
+
+            </div>
+
+        </div>
+
+        <div class="controls-container" id="controlsContainer">
+
+            <div class="controls-inner-container" id="controlsInnerContainer">
+                
+            </div>
+
+            <div class='erle-center' id="controlsInnerContainerCover">
+               loading...
+            </div>
+
+        </div>
+
+        <div class="details-container" id="erleDetailsContainer">
+
+            <div class='erle-center' id="erleDetailsInnerContainer">
+
+                <div id="logosContainer">
+                    
+                    <div class="erle-center" id="ERLELogoContainer">
+                        
+                        <img src="{% static 'base/images/logo_n.png' %}" id="ERLELogo">
+                
+                    </div>
+                    
+
+                </div>
+                <div id="threeSaoirsesContainer">
+                    
+                    <img src="{% static 'base/images/three_saoirses.png' %}" id="threeSaoirses">
+                
+                </div>
+                <div id="ERLELinkContainer">
+                    
+                    <div class="erle-link-text" id="ERLELinkText">Practice your English by chatting live with Saoirse at</div>
+                    <div class="erle-link-text" id="ERLELink"><a href="https://erle.ucd.ie" target="_blank">erle.ucd.ie</a></div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div id="affiliatedDetailsContainer">
+
+            <div id="UCDLogoContainer">
+                
+                <img src="{% static 'base/images/ucd_logo.png' %}" id="UCDLogo">
+        
+            </div>
+                        
+            <div id="ADAPTLogoContainer">
+                
+                <img src="{% static 'base/images/adapt_logo_transparent.png' %}" id="ADAPTLogo">
+        
+            </div>
+
+            <div id="cereprocDetailsInnerContainer">
+                voices by&nbsp<a href="https://cereproc.com" target="_blank">CereProc</a>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<audio id="synthAudio"></audio>
+
+<!-- SCRIPTS -->
+{% include 'saoirse/scripts.html' %}
+
+
+{% endblock %}

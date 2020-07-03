@@ -19,6 +19,7 @@ function getRecognitionResponse( json ) {
 
     audioVariables.count = 0;
     audioVariables.id = json.id;
+    console.log( 'json.words:', json.words );
     if ( json.words.length !== 0 ) {
 
         audioVariables.transcript = json.words;
@@ -33,9 +34,9 @@ function getRecognitionResponse( json ) {
 
    		displayButtons( 'bottom', [ 'microphone' ] );
 
-        if ( audioVariables.transcript.length === 0 ) {
+        if ( json.words.length === 0 ) {
 
-            $('#transcriptionContainer').hide();
+            alert('no audio');
 
         }
 
@@ -50,17 +51,20 @@ function addSpaces( w ) {
 
         w.forEach( function( word, i ) {
 
-            console.log('word:', word)
+            //console.log('word:', word)
             //console.log('w[i-1]:', w[i-1])
             //console.log('w[i-1].voice:', w[i-1].voice)
             //console.log('w[i+1]:', w[i+1])
             //console.log('w[i+1].voice:', w[i+1].voice)
             if ( w[ i - 1 ] !== undefined ) {
 
-                if ( !w[ i - 1 ].voice && !word.voice ) {
+                if ( w[ i - 1 ].voice === false && word.voice === false ) {
 
-                    console.log('word again:', word)
                     wordListWithSpaces.push( { word: "&nbsp", voice: false, start_time: null, end_time: null, highlighted: null } );
+            
+                } else if ( !w[ i - 1 ].voice && !word.voice ) {
+
+                    wordListWithSpaces.push( { word: "&nbsp", voice: null, start_time: null, end_time: null, highlighted: null } );
             
                 } else {
 

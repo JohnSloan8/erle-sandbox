@@ -40,7 +40,7 @@ def store_blob(request):
 
 @csrf_exempt
 def delete_words(request):
-    time.sleep(3)
+    # time.sleep(3)
     data = json.loads(request.GET['JSONData'])
     
     indexes = data['indexesToBeDeleted']

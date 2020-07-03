@@ -19,7 +19,6 @@ function wordTap() {
 
     calculateIntegersStartFinish( thisId );
 
-    console.log('in wordTap()');
     setTimestampsForAudio();
 
     highlightWords();
@@ -123,17 +122,21 @@ function highlightWords() {
     })
 
 
-    let finalIntegerIndex = audioVariables.transcriptWithSpaces.length - 1;
-    for ( let i = 1; i<5; i++ ) {
-    
-        audioVariables.transcriptWithSpaces[ Math.max( 0, integersStartFinish[ 0 ] - i ) ].highlighted = 'secondary';
-        audioVariables.transcriptWithSpaces[ Math.min( finalIntegerIndex, integersStartFinish[ 1 ] + i ) ].highlighted = 'secondary';
+    if ( integersStartFinish.length !== 0 ) {
 
-    }
+        let finalIntegerIndex = audioVariables.transcriptWithSpaces.length - 1;
+        for ( let i = 1; i<5; i++ ) {
+        
+            audioVariables.transcriptWithSpaces[ Math.max( 0, integersStartFinish[ 0 ] - i ) ].highlighted = 'secondary';
+            audioVariables.transcriptWithSpaces[ Math.min( finalIntegerIndex, integersStartFinish[ 1 ] + i ) ].highlighted = 'secondary';
 
-    for( let i = integersStartFinish[ 0 ]; i <= integersStartFinish[ 1 ]; i++ ) {
+        }
 
-        audioVariables.transcriptWithSpaces[ i ].highlighted = 'main';
+        for( let i = integersStartFinish[ 0 ]; i <= integersStartFinish[ 1 ]; i++ ) {
+
+            audioVariables.transcriptWithSpaces[ i ].highlighted = 'main';
+
+        };
 
     };
 
@@ -158,12 +161,17 @@ function deleteWords() {
     let newTranscript = []
     audioVariables.transcript.forEach( function( w, j ) {
 
-        w.highlighted = null;
         if ( !transcriptIndexesToBeDeleted.includes( j ) ) {
 
             newTranscript.push( w );
 
         }
+
+    })
+
+    audioVariables.transcriptWithSpaces.forEach( function( wo ) {
+
+        wo.highlighted = null;
 
     })
 
@@ -217,14 +225,35 @@ function setTimestampsForAudio() {
         let transcriptIntegers = [ convertWordInteger( wordIntegers[ 0 ] ), convertWordInteger( wordIntegers[ 1 ] ) ];
 
         let wordMinus2 = Math.max( transcriptIntegers[ 0 ] - 2, 0 );
-        audioVariables.splicedAudioStartTime = audioVariables.transcript[ wordMinus2 ].start_time; 
-
-        if ( audioVariables.transcript.length - 1 - transcriptIntegers[ 1 ] > 2 ) {
-
-            let wordPlus2 = transcriptIntegers[ 1 ] + 2;
-            audioVariables.splicedAudioEndTime = audioVariables.transcript[ wordPlus2 ].end_time + 0.2;
+        let wordPlus2 = transcriptIntegers[ 1 ];
+;
+        if ( audioVariables.modification === 'typed' ) {
+            wordMinus2 = transcriptIntegers[0];
+            audioVariables.splicedAudioEndTime = audioVariables.transcript[ wordPlus2 ].end_time;
+            integersStartFinish = [];
         
+        } else {
+            
+            if ( audioVariables.transcript.length - 1 - transcriptIntegers[ 1 ] > 1 ) {
+
+                wordPlus2 = transcriptIntegers[ 1 ] + 2;
+                audioVariables.splicedAudioEndTime = audioVariables.transcript[ wordPlus2 ].end_time + 0.2;
+
+            } else if ( audioVariables.transcript.length - 1 - transcriptIntegers[ 1 ] === 1 ) {
+
+                wordPlus2 = transcriptIntegers[ 1 ] + 1;
+                audioVariables.splicedAudioEndTime = audioVariables.transcript[ wordPlus2 ].end_time + 0.2;
+
+            } else {
+
+                wordPlus2 = transcriptIntegers[ 1 ];
+                audioVariables.splicedAudioEndTime = audioVariables.transcript[ wordPlus2 ].end_time + 0.2;
+        
+            }
+
         }
+
+        audioVariables.splicedAudioStartTime = audioVariables.transcript[ wordMinus2 ].start_time; 
 
 
     }
@@ -232,6 +261,7 @@ function setTimestampsForAudio() {
     audioVariables.speechAudio.load(); //put this here cause blue ear was only wokring on second click (seems to work on first try)
     audioVariables.speechAudio.currentTime = audioVariables.splicedAudioStartTime;
     audioVariables.splicedAudioDuration = audioVariables.splicedAudioEndTime - audioVariables.splicedAudioStartTime;
+    audioVariables.modification = null;
 
     console.log( 'audioVariables.splicedAudioStartTime:', audioVariables.splicedAudioStartTime)
     console.log( 'audioVariables.splicedAudioEndTime:', audioVariables.splicedAudioEndTime)
@@ -259,6 +289,25 @@ function getModifiedVoiceAudio( json ) {
     //displayTranscript();
     if ( audioVariables.modification === 'typed' ) {
 
+        integersStartFinish = [];
+        audioVariables.transcriptWithSpaces.forEach( function( w, i ) {
+            
+            if ( w.voice === false ) {
+
+                if ( integersStartFinish.length === 0 ) {
+
+                    integersStartFinish = [ i, i ];
+
+                } else {
+
+                    integersStartFinish[ 1 ] = i;
+
+                }
+
+            }
+
+        });
+
         displayButtons( 'top', [ 'speak' ] );
 
     } else if ( audioVariables.modification === 'delete' ) {
@@ -271,7 +320,6 @@ function getModifiedVoiceAudio( json ) {
 
     }
 
-    audioVariables.modification = null;
     readyVoiceAudio();
     displayButtons( 'bottom', [ 'ear', 'microphone', 'play' ] );
 

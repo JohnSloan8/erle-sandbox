@@ -27,6 +27,7 @@ function setButtonEvents() {
     $( '#microphoneButtonContainer' ).click( microphoneClicked );
     $( '#stopButtonContainer' ).click( stopClicked );
     $( '#earBlueButtonContainer' ).click( playVoiceSnippet );
+    $( '#speakButtonContainer' ).click( playVoiceSnippet );
     $( '#earButtonContainer' ).click( playVoiceFull );
 
 }

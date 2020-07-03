@@ -8,7 +8,7 @@ from google.cloud import speech_v1
 import io
 import code
 
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/home/john/johnsHDD/PhD/2018_autumn/erle-3666ad7eec71.json"
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/home/john/johnsHDD/PhD/2020_summer/erle_sandbox_container/erle-3666ad7eec71.json"
 client = speech_v1.SpeechClient()
 language_code = "en-US"
 sample_rate_hertz = 22050
@@ -29,7 +29,7 @@ def get_speech_recognition(aud_file):
     transcript = ''
     words = []
     try:
-        ffmpeg.input(input_aud_loc).output(output_aud_loc, ar=16000).run()
+        ffmpeg.input(input_aud_loc).output(output_aud_loc, ac=1, ar=16000).run()
         with io.open(output_aud_loc, "rb") as f:
             content = f.read()
 

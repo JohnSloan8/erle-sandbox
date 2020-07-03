@@ -42,18 +42,21 @@ function getClassesToAdd( w_ ) {
 
     if ( w_.voice === false ) {
 
-        classToAdd = ' active-synthesised-word' ;
-        //w_.voice = null;
+        classToAdd = 'active-synthesised-word' ;
+        w_.voice = null;
+        //w_.highlighted = null;
 
     } else if ( w_.voice === null ) {
 
         if ( w_.highlighted === 'main' ) {
         
-            classToAdd = 'main-highlighted-word-synthesised';
+            //classToAdd = 'main-highlighted-word-synthesised';
+            classToAdd = 'main-highlighted-word';
 
         } else if ( w_.highlighted === 'secondary' ) {
 
-            classToAdd = 'secondary-highlighted-word-synthesised';
+            //classToAdd = 'secondary-highlighted-word-synthesised';
+            classToAdd = 'secondary-highlighted-word';
 
         } else {
 

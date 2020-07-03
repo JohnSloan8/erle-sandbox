@@ -3,45 +3,26 @@ function displayTranscript() {
     console.log('in displayTranscript');
     $( '#transcriptionInnerContainer' ).empty();
 
-    if ( audioVariables.transcript.length !== 0 ) {
+    if ( audioVariables.transcriptWithSpaces.length !== 0 ) {
 
         $( '#transcriptionContainer' ).show();
-        let lastIndex = audioVariables.transcript.length - 1;
-        audioVariables.transcript.forEach( function( w, i ) {
+        let lastIndex = audioVariables.transcriptWithSpaces.length - 1;
+        let firstSynthesisedWord = true;
+        audioVariables.transcriptWithSpaces.forEach( function( w, i ) {
 
-            let suffix = ''
-            if ( i !== lastIndex ) { suffix = '<!--' }
-
-            let spaceIndex = 2 * i;
-            let wordIndex = spaceIndex + 1;
+            classToAdd = getClassesToAdd( w )
 
             $( '#transcriptionInnerContainer' ).append(
 
                 '<div class="transcription-word-space-container">' +
 
-                    '<div class="transcription-word-space-inner-container" id="transcriptionWord' + spaceIndex.toString() + '">&nbsp</div>' +
+                    '<div class="transcription-word-space-inner-container ' + classToAdd + '" id="transcriptionWord' + i.toString() + '">' + w.word + '</div>' +
 
-                '</div><!--' + 
-
-                '--><div class="transcription-word-space-container">' +
-
-                    '<div class="transcription-word-space-inner-container" id="transcriptionWord' + wordIndex.toString() + '">' + w.word + '</div>' +
-
-                '</div>' + suffix 
+                '</div><!--'
 
             )
 
         });
-
-        $( '#transcriptionInnerContainer' ).append(
-
-            '<div class="transcription-word-space-container">' +
-
-                '<div class="transcription-word-space-inner-container" id="transcriptionWord' + ( lastIndex * 2 + 2 ).toString() + '">&nbsp</div>' +
-
-            '</div><!--' 
-
-        );
 
         resetTapWordEvents();
 
@@ -52,6 +33,52 @@ function displayTranscript() {
 
     }
 
-    resetIntegersStartFinish();
+}
+
+function getClassesToAdd( w_ ) {
+
+    let classToAdd = 'inactive-word-voice';
+
+
+    if ( w_.voice === false ) {
+
+        classToAdd = ' active-synthesised-word' ;
+        //w_.voice = null;
+
+    } else if ( w_.voice === null ) {
+
+        if ( w_.highlighted === 'main' ) {
+        
+            classToAdd = 'main-highlighted-word-synthesised';
+
+        } else if ( w_.highlighted === 'secondary' ) {
+
+            classToAdd = 'secondary-highlighted-word-synthesised';
+
+        } else {
+
+            classToAdd = 'inactive-synthesised-word';
+
+        }
+
+    } else {
+
+        if ( w_.voice ) {
+
+            if ( w_.highlighted === 'main' ) {
+            
+                classToAdd = 'main-highlighted-word';
+
+            } else if ( w_.highlighted === 'secondary' ) {
+
+                classToAdd = 'secondary-highlighted-word';
+
+            }
+
+        }
+
+    }
+
+    return classToAdd
 
 }

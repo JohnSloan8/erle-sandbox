@@ -116,103 +116,38 @@ function calculateIntegersStartFinish( idInteger ) {
 
 function highlightWords() {
 
-    $( '.transcription-word-space-inner-container').css({
+    audioVariables.transcriptWithSpaces.forEach( function( w ) {
+        
+        w.highlighted = null;
 
-            'background-color': 'white',
-            'color': 'black'
+    })
 
-    });
+
+    let finalIntegerIndex = audioVariables.transcriptWithSpaces.length - 1;
+    for ( let i = 1; i<5; i++ ) {
+    
+        audioVariables.transcriptWithSpaces[ Math.max( 0, integersStartFinish[ 0 ] - i ) ].highlighted = 'secondary';
+        audioVariables.transcriptWithSpaces[ Math.min( finalIntegerIndex, integersStartFinish[ 1 ] + i ) ].highlighted = 'secondary';
+
+    }
 
     for( let i = integersStartFinish[ 0 ]; i <= integersStartFinish[ 1 ]; i++ ) {
 
-        $( '#transcriptionWord' + i.toString() ).css({
-            'background-color': 'blue',
-            'color': 'white'
-        });
+        audioVariables.transcriptWithSpaces[ i ].highlighted = 'main';
 
     };
 
-
-    $( '#transcriptionWord' + (integersStartFinish[ 0 ] - 1).toString() ).css({
-
-        'background-color': lightBlueHexColor,
-
-    });
-    $( '#transcriptionWord' + (integersStartFinish[ 0 ] - 2).toString() ).css({
-
-        'background-color': lightBlueHexColor,
-
-    });
-    $( '#transcriptionWord' + (integersStartFinish[ 0 ] - 3).toString() ).css({
-
-        'background-color': lightBlueHexColor,
-
-    });
-    if ( integersStartFinish[ 0 ] % 2 !== 0 ) {
-
-        $( '#transcriptionWord' + (integersStartFinish[ 0 ] - 4).toString() ).css({
-
-        'background-color': lightBlueHexColor,
-
-        });
-
-    }
-
-    $( '#transcriptionWord' + (integersStartFinish[ 1 ] + 1).toString() ).css({
-
-        'background-color': lightBlueHexColor,
-
-    });
-    $( '#transcriptionWord' + (integersStartFinish[ 1 ] + 2).toString() ).css({
-
-        'background-color': lightBlueHexColor,
-
-    });
-    $( '#transcriptionWord' + (integersStartFinish[ 1 ] + 3).toString() ).css({
-
-        'background-color': lightBlueHexColor,
-
-    });
-    if ( integersStartFinish[ 1 ] % 2 !== 0 ) {
-
-        $( '#transcriptionWord' + (integersStartFinish[ 1 ] + 4).toString() ).css({
-
-        'background-color': lightBlueHexColor,
-
-        });
-
-    }
+    displayTranscript();
 
 }
 
-function displayAppropriateTopButtons() {
+function resetHighlightedTranscript() {
 
-    let lenSelectedIntegers = integersStartFinish.length;
-    if ( lenSelectedIntegers === 0 ) {
+    audioVariables.transcript.forEach( function( w ) {
 
-        displayButtons( 'top', [] );
+        w.highlighted = null
 
-    } else { 
-
-        if ( integersStartFinish[ 0 ] === integersStartFinish[ 1 ] ) {
-
-            if ( integersStartFinish[ 0 ] % 2 === 0 ) {
-
-                displayButtons( 'top', [ 'earBlue', 'keyboard' ] );
-
-            } else {
-
-                displayButtons( 'top', [ 'earBlue', 'keyboard', 'xClose' ] );
-
-            }
-
-        } else {
-            
-            displayButtons( 'top', [ 'earBlue', 'keyboard', 'xClose' ] );
-
-        }
-
-    }
+    })
 
 }
 
@@ -223,6 +158,7 @@ function deleteWords() {
     let newTranscript = []
     audioVariables.transcript.forEach( function( w, j ) {
 
+        w.highlighted = null;
         if ( !transcriptIndexesToBeDeleted.includes( j ) ) {
 
             newTranscript.push( w );
@@ -233,6 +169,7 @@ function deleteWords() {
 
     if ( newTranscript.length !== 0 ) {
     
+        audioVariables.modification === 'delete';
         setWordsToViewMode();
         displayButtons( 'top', [] )
         displayButtons( 'bottom', [''] )
@@ -248,8 +185,6 @@ function deleteWords() {
         sendAjax( "/pronunciation/delete_words", "GET", JSONData, 10000, getModifiedVoiceAudio, true, "application/json; charset=utf-8")
 
     }
-
-    audioVariables.transcript = newTranscript;
 
 }
 
@@ -313,30 +248,22 @@ function convertWordInteger( integer_ ) {
 
 function getModifiedVoiceAudio( json ) {
 
+    resetIntegersStartFinish();
     audioVariables.count = json.updated_audio_count;
-    console.log( 'json.updated_relative_filename:', json.updated_relative_filename );
     audioVariables.relativeFilename = json.updated_relative_filename;
-    console.log( 'json.updated_words', json.updated_words );
     audioVariables.transcript = json.updated_words;
-    console.log( 'json.updated_duration:', json.updated_duration );
+    audioVariables.transcriptWithSpaces= addSpaces( json.updated_words );
     audioVariables.speechAudio.serverDuration = json.updated_duration;
     audioVariables.speechAudio.src = prefixURL + 'media/' + audioVariables.relativeFilename;
     audioVariables.fullSpeechAudio.src = prefixURL + 'media/' + audioVariables.relativeFilename;
-    displayTranscript();
+    //displayTranscript();
     if ( audioVariables.modification === 'typed' ) {
 
-        audioVariables.modification = null;
         displayButtons( 'top', [ 'speak' ] );
 
-        alterTranscript();
-        for ( let j=newAlteredWordIndexes[ 0 ] * 2 + 1; j<=newAlteredWordIndexes[ newAlteredWordIndexes.length - 1 ] * 2 + 1; j++ ) {
+    } else if ( audioVariables.modification === 'delete' ) {
 
-            $( '#transcriptionWord' + j.toString() ).css({ 
-                'background-color': 'green',
-                'color': 'white',
-            });
-
-        }
+        displayButtons( 'top', [] );
 
     } else {
 
@@ -344,66 +271,9 @@ function getModifiedVoiceAudio( json ) {
 
     }
 
+    audioVariables.modification = null;
     readyVoiceAudio();
     displayButtons( 'bottom', [ 'ear', 'microphone', 'play' ] );
 
 }
-
-var newAlteredWordIndexes = []
-function alterTranscript() {
-
-    let alteredWordIndexes = []
-    let singleSpace = false;
-    if ( integersStartFinish[ 0 ] === integersStartFinish[ 1 ] && integersStartFinish[ 0 ] % 2 === 0 ) {
-
-        let singleSpaceIndex = ( integersStartFinish[ 0 ] ) / 2
-        alteredWordIndexes = [ singleSpaceIndex, singleSpaceIndex ];
-        singleSpace = true;
-
-    } else {
-
-        for( let i = integersStartFinish[ 0 ]; i <= integersStartFinish[ 1 ]; i++ ) {
-
-            if ( i % 2 !== 0 ) {
-
-                alteredWordIndexes.push( ( i - 1 ) / 2 );
-
-            }
-
-        }
-
-    }
-
-    let preAlteration = audioVariables.transcript.slice( 0, alteredWordIndexes[ 0 ] );
-    let postAlteration;
-    if ( singleSpace ) {
-        
-        postAlteration = audioVariables.transcript.slice( alteredWordIndexes[ alteredWordIndexes.length - 1 ] );
-
-    } else {
-
-        postAlteration = audioVariables.transcript.slice( alteredWordIndexes[ alteredWordIndexes.length - 1 ] + 1 );
-    
-    }
-
-    let preAlterationLength = preAlteration.length;
-    newAlteredWordIndexes = []
-    typedString.split(' ').forEach( function( w, i ) {
-
-        newAlteredWordIndexes.push( preAlterationLength + i );
-        preAlteration.push({
-        
-            'word': w,
-            'start_time': null,
-            'end_time': null,
-
-        });
-
-    })
-
-    audioVariables.transcript = preAlteration.concat( postAlteration );
-
-}
-
-
 

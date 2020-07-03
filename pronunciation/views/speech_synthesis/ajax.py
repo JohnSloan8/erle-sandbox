@@ -13,7 +13,7 @@ import time
 @csrf_exempt
 def store_typed_transcript_correction(request):
 
-    time.sleep(3)
+    # time.sleep(3)
     # print('request.GET:', request.GET)
     # code.interact(local=locals())
     data = json.loads(request.GET['JSONData'])

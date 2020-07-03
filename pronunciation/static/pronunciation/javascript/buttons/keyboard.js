@@ -197,6 +197,7 @@ function submitTypedString() {
         setWordsToViewMode();
         displayButtons( 'top', [] )
         displayButtons( 'bottom', [''] )
+        resetHighlightedTranscript()
 
         let dataToSend = {
             'typedString': typedString,
@@ -216,6 +217,8 @@ function submitTypedString() {
     }
 
 }
+
+
 
 //function afterSubmit() {
 

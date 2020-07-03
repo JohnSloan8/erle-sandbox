@@ -22,6 +22,7 @@ function getRecognitionResponse( json ) {
     if ( json.words.length !== 0 ) {
 
         audioVariables.transcript = json.words;
+        audioVariables.transcriptWithSpaces = addSpaces( json.words );
         audioVariables.relativeFilename = json.relative_filename
         audioVariables.speechAudio.src = prefixURL + 'media/' + audioVariables.relativeFilename;
         audioVariables.fullSpeechAudio.src = prefixURL + 'media/' + audioVariables.relativeFilename;
@@ -39,6 +40,49 @@ function getRecognitionResponse( json ) {
         }
 
     }
+
+}
+
+function addSpaces( w ) {
+
+    wordListWithSpaces = []
+    if ( w.length !== 0 ) {
+
+        w.forEach( function( word, i ) {
+
+            console.log('word:', word)
+            //console.log('w[i-1]:', w[i-1])
+            //console.log('w[i-1].voice:', w[i-1].voice)
+            //console.log('w[i+1]:', w[i+1])
+            //console.log('w[i+1].voice:', w[i+1].voice)
+            if ( w[ i - 1 ] !== undefined ) {
+
+                if ( !w[ i - 1 ].voice && !word.voice ) {
+
+                    console.log('word again:', word)
+                    wordListWithSpaces.push( { word: "&nbsp", voice: false, start_time: null, end_time: null, highlighted: null } );
+            
+                } else {
+
+                    wordListWithSpaces.push( { word: "&nbsp", voice: true, start_time: null, end_time: null, highlighted: null  } );
+
+                }
+
+            } else {
+
+                wordListWithSpaces.push( { word: "&nbsp", voice: true, start_time: null, end_time: null, highlighted: null  } );
+
+            }
+
+            wordListWithSpaces.push( word );
+
+        });
+
+        wordListWithSpaces.push( { word: "&nbsp", voice: true, start_time: null, end_time: null, highlighted: null  } );
+
+    }
+
+    return wordListWithSpaces
 
 }
 

@@ -91,6 +91,10 @@ def create_new_audio_file(indexes_, transcript_, relative_filename_, audio_count
     else:
         duration_to_be_changed = -end_delete + start_delete + duration_synth
 
+    for word in transcript_:
+        if word['voice'] == False:
+            word['voice'] = None
+
     if blank_insertion:
         left_word_list = transcript_[:after_blank_index]
         right_word_list = transcript_[after_blank_index:]
@@ -115,6 +119,7 @@ def create_new_audio_file(indexes_, transcript_, relative_filename_, audio_count
         updated_timesptamps_right_word_list.append(w)
 
     updated_words = left_word_list + synth_word_list + updated_timesptamps_right_word_list
+    # print('updated_words:', updated_words)
 
     return updated_relative_filename, updated_words
 

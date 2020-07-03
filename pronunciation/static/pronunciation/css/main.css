@@ -74,3 +74,37 @@
     /*box-shadow: 2px 2px 8px 1px grey;*/
 }
 
+.inactive-synthesised-word {
+    background-color: #90ee90;
+    color: black;
+}
+
+.active-synthesised-word {
+    background-color: #00ff00;
+    color: white;
+}
+
+.main-highlighted-word {
+    background-color: #0000ff;
+    color: white;
+}
+
+.main-highlighted-word-synthesised {
+    background-color: #0033ff;
+    color: white;
+}
+
+.secondary-highlighted-word {
+    background-color: #d4d7ff;
+    color: black;
+}
+
+.secondary-highlighted-word-synthesised {
+    background-color: #d4ffea;
+    color: black;
+}
+
+.inactive-word-voice {
+    background-color: white;
+    color: black;
+}

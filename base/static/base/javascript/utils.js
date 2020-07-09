@@ -7,7 +7,7 @@ function definePrefixURL() {
 
     } else {
 
-        prefixURL = "http://erle-sandbox.ucd.ie/"
+        prefixURL = "https://erle-sandbox.ucd.ie/"
 
     }
 

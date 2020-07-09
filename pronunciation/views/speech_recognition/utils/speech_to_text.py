@@ -9,6 +9,7 @@ import io
 import code
 
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/home/john/johnsHDD/PhD/2020_summer/erle_sandbox_container/erle-3666ad7eec71.json"
+# os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/home/jsloan/erle_sandbox_container/erle-3666ad7eec71.json"
 client = speech_v1.SpeechClient()
 language_code = "en-US"
 sample_rate_hertz = 22050
@@ -24,7 +25,7 @@ def get_speech_recognition(aud_file):
     # convert from .webm to wav for Google's speech-to-text using a Python ffmpeg package
     input_aud_loc = os.path.join(settings.BASE_DIR, 'media', 'recorded_speech',  aud_file)
     output_aud_loc = os.path.join(settings.BASE_DIR, 'media', 'recorded_speech', 'wav', aud_file + '_00.' + settings.AUDIO_EXTENSION)
-    output_aud_loc_mp3 = os.path.join(settings.BASE_DIR, 'media', 'recorded_speech', 'mp3', aud_file)
+    # output_aud_loc_mp3 = os.path.join(settings.BASE_DIR, 'media', 'recorded_speech', 'mp3', aud_file)
 
     transcript = ''
     words = []
@@ -60,7 +61,7 @@ def get_speech_recognition(aud_file):
     # except:
         # print('ffmpeg error in making mp3')
     
-    shutil.copy( input_aud_loc, output_aud_loc_mp3 )
+    # shutil.copy( input_aud_loc, output_aud_loc_mp3 )
 
     return [transcript, words, duration]
 

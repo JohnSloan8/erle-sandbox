@@ -1,9 +1,10 @@
 $(window).on( 'load', function() {
 
     definePrefixURL();
+    console.log('prefixURL:', prefixURL)
     loadScene( beginAnimation );
     dealWithResizing();
-    //setCookie();
+    setCookie();
 
 });
 
